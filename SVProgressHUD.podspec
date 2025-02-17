@@ -15,17 +15,16 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.default_subspec = 'Core'
+  s.resource_bundles = {
+    'SVProgressHUD' => ['SVProgressHUD/SVProgressHUD.bundle', 'SVProgressHUD/PrivacyInfo.xcprivacy']
+  }
 
   s.subspec 'Core' do |core|
     core.source_files = 'SVProgressHUD/*.{h,m}'
-    core.resources = ['SVProgressHUD/SVProgressHUD.bundle']
-    core.resource_bundles = {'SVProgressHUD' => ['SVProgressHUD/PrivacyInfo.xcprivacy']}
   end
 
   s.subspec 'AppExtension' do |ext|
     ext.source_files = 'SVProgressHUD/*.{h,m}'
-    ext.resources = ['SVProgressHUD/SVProgressHUD.bundle']
-    ext.resource_bundles = {'AppExtension' => ['SVProgressHUD/PrivacyInfo.xcprivacy']}
     ext.pod_target_xcconfig = { 'GCC_PREPROCESSOR_DEFINITIONS' => 'SV_APP_EXTENSIONS=1' }
   end
 end
